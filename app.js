@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var config = require('./package.json').config;
 
 app.get('/', function(req, res) {
   res.send('Roosh!');
@@ -21,4 +22,4 @@ app.delete('/restrooms', function(req, res) {
   // TODO: remove restroom
 });
 
-app.listen(4343);
+app.listen(config.port);

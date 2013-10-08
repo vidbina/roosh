@@ -8,6 +8,10 @@
   },
   "devDependencies": {
     "mocha": "1.x",
-    "chai": "1.x"
+    "chai": "1.x",
+    "superagent": "0.15.x"
+  },
+  "config": {
+    "port": "8998"
   }
 }
