@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var config = require('./package.json').config;
+var mongo = require('mongodb');
+var db = new mongo.Db("", new mongo.Server(""));
 
 app.get('/', function(req, res) {
   res.send('Roosh!');
