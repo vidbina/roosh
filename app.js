@@ -1,8 +1,39 @@
 var express = require('express');
 var app = express();
 var config = require('./package.json').config;
-var mongo = require('mongodb');
-var db = new mongo.Db("", new mongo.Server(""));
+var credentials = require('./credentials.json');
+var mongoose = require('mongoose');
+
+if (credentials.mongolab) {
+  mongoose.connect(
+    'mongodb://' + 
+      credentials.mongolab.user + ':' + credentials.mongolab.password + 
+      '@' + credentials.mongolab.path);
+}
+
+var restroomSchema = mongoose.Schema({
+  name: String,
+  rating: Number,
+  organization: String,
+  url: String
+});
+var Restroom = mongoose.model('Restoom', restroomSchema);
+//console.log(Restroom);
+
+/*var test = new Restroom({
+  name: "Winkelcentrum Zuidplein", 
+    rating: 5, 
+    organization: "vendor",
+    url: "http://www.zuidplein.nl/winkel/150/9/i/vendor-public-washrooms-toiletten"
+});
+test.save(function(err, success) {
+  if(err) {
+    console.log("We failed with " + err);
+  } else {
+    console.log("We succeeded with");
+    console.log(success);
+  }
+})*/
 
 app.get('/', function(req, res) {
   res.send('Roosh!');
